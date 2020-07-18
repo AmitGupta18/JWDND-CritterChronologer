@@ -15,8 +15,8 @@ You should see the message "Critter Starter installed successfully" in your brow
 
 You must also run below sql queries to create database and user
   - CREATE DATABASE udacity_critter;
-	- CREATE USER 'udacity'@'localhost' IDENTIFIED BY 'udacity';
-	- GRANT ALL PRIVILEGES ON *.* TO 'udacity'@'localhost' IDENTIFIED BY 'udacity';
+  - CREATE USER 'udacity'@'localhost' IDENTIFIED BY 'udacity';
+  - GRANT ALL PRIVILEGES ON *.* TO 'udacity'@'localhost' IDENTIFIED BY 'udacity';
 
 
 ## Testing
