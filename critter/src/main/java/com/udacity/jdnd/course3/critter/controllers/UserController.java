@@ -80,7 +80,7 @@ public class UserController {
 
 	@GetMapping("/employee/availability")
 	public List<EmployeeDTO> findEmployeesForService(@RequestBody EmployeeRequestDTO employeeDTO) {
-		List<Employee> employees = employeeService.findEmployeeforService(employeeDTO);
+		List<Employee> employees = employeeService.findEmployeeForService(employeeDTO.getDate(), employeeDTO.getSkills());
 		return employees.stream().map(employee -> convertEmployeeToEmployeeDto(employee)).collect(Collectors.toList());
 	}
 
