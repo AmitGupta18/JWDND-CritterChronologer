@@ -9,12 +9,20 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 import com.udacity.jdnd.course3.critter.models.EmployeeSkill;
 
 @Entity(name = "employees")
-public class Employee extends User {
+public class Employee {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
+	private String name;
 
 	@ElementCollection(targetClass = EmployeeSkill.class)
 	@Enumerated(EnumType.STRING)
@@ -27,6 +35,30 @@ public class Employee extends User {
 	@ManyToMany(targetEntity = Schedule.class, mappedBy = "employees", cascade = { CascadeType.PERSIST,
 			CascadeType.MERGE, CascadeType.REFRESH })
 	public Set<Schedule> schedules = new HashSet<>();
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Set<Schedule> getSchedules() {
+		return schedules;
+	}
+
+	public void setSchedules(Set<Schedule> schedules) {
+		this.schedules = schedules;
+	}
 
 	public Set<EmployeeSkill> getSkills() {
 		return skills;
