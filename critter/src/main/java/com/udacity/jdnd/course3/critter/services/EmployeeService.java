@@ -1,7 +1,9 @@
 package com.udacity.jdnd.course3.critter.services;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
@@ -12,7 +14,7 @@ import org.springframework.util.ObjectUtils;
 
 import com.udacity.jdnd.course3.critter.dao.EmployeeRepository;
 import com.udacity.jdnd.course3.critter.entities.Employee;
-import com.udacity.jdnd.course3.critter.models.EmployeeRequestDTO;
+import com.udacity.jdnd.course3.critter.models.EmployeeSkill;
 
 @Service
 @Transactional
@@ -36,10 +38,9 @@ public class EmployeeService {
 		return employee.get();
 	}
 
-	public List<Employee> findEmployeeforService(EmployeeRequestDTO employeeDTO) {
-		return employeeRepository.findAllBydaysAvailable(employeeDTO.getDate().getDayOfWeek()).stream()
-				.filter(employee -> employee.getSkills().containsAll(employeeDTO.getSkills()))
-				.collect(Collectors.toList());
+	public List<Employee> findEmployeeForService(LocalDate date, Set<EmployeeSkill> skills) {
+		return employeeRepository.findAllBydaysAvailable(date.getDayOfWeek()).stream()
+				.filter(employee -> employee.getSkills().containsAll(skills)).collect(Collectors.toList());
 	}
 
 }

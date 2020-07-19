@@ -5,6 +5,8 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -18,7 +20,10 @@ public class Pet {
 	@Id
 	@GeneratedValue
 	private long id;
+	
+	@Enumerated(EnumType.STRING)
 	private PetType type;
+	
 	private String name;
 
 	@ManyToOne
